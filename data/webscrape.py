@@ -17,6 +17,7 @@ _STAT_INDICES = {'driving distance':                101,
                  'driving accuracy percentage':     102,
                  'greens in regulation percentage': 103,
                  'putting average':                 104,
+                 'official money':                  109,
                  'scrambling':                      130,
                  'proximity to hole':               331}
 
@@ -187,4 +188,4 @@ def cleanup_row(row, stat, headers):
 
 
 if __name__ == '__main__':
-    get_stat_data('proximity to hole')
+    pass
