@@ -4,3 +4,7 @@ che594_stats_project.iml
 
 # html files
 data/html
+
+# .pyc files
+*.pyc
+
