@@ -103,6 +103,11 @@ def get_stat_data(stat, year=None):
         recent (including current) season.
     """
 
+    # create html directory if it doesn't exist
+    html_dir = os.path.join(_THIS_MODULE_DIR, "html")
+    if not os.path.exists(html_dir):
+        os.mkdir(html_dir)
+
     # path of HTML file for stat web page
     html_path = "html/{}".format("_".join(stat.lower().split(" ")))
     if year is not None:
