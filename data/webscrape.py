@@ -8,6 +8,10 @@ import requests
 import pandas as pd
 
 
+# directory of this module
+_THIS_MODULE_DIR = os.path.dirname(__file__)
+
+
 ##################
 # STAT PAGE URLs #
 ##################
@@ -103,12 +107,12 @@ def get_stat_data(stat, year=None):
     html_path = "html/{}".format("_".join(stat.lower().split(" ")))
     if year is not None:
         html_path += "_{}".format(str(year))
+    html_path = os.path.join(_THIS_MODULE_DIR, html_path)
 
     # if HTML file doesn't exist, request web page and save HTML to file
     if not os.path.exists(html_path):
         url = get_stat_url(stat, year=year)
         r = requests.get(url)
-        print(type(r.content))
         save_html(r.content, html_path)
 
     # retrieve HTML from file
@@ -145,6 +149,7 @@ def get_stat_data(stat, year=None):
     if year is not None:
         csv_path += "_{}".format(str(year))
     csv_path += ".csv"
+    csv_path = os.path.join(_THIS_MODULE_DIR, csv_path)
     df.to_csv(path_or_buf=csv_path, index=False)
 
 
