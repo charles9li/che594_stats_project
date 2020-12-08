@@ -85,7 +85,6 @@ def create_yx(main_stat, other_stats, year=None):
         nan_filter = ~np.isnan(x)
     else:
         nan_filter = np.all(~np.isnan(x), axis=1)
-    print(nan_filter)
     x = x[nan_filter]
     y = y[nan_filter]
 
