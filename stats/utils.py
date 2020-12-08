@@ -82,12 +82,12 @@ def create_yx(main_stat, other_stats, year=None):
 
     # remove rows with NaN in x and corresponding rows in y
     if len(x.shape) == 1:
-        filter = ~np.isnan(x)
+        nan_filter = ~np.isnan(x)
     else:
-        filter = [all(~np.isnan(row)) for row in x]
-    print(filter)
-    x = x[filter]
-    y = y[filter]
+        nan_filter = np.all(~np.isnan(x), axis=1)
+    print(nan_filter)
+    x = x[nan_filter]
+    y = y[nan_filter]
 
     return y, x
 
