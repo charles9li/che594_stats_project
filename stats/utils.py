@@ -54,6 +54,9 @@ def create_yx(main_stat, other_stats, year=None):
     other_stats : str or list
         Independent stat(s). Can pass a single stat as a str or a list of str
         for multiple stats.
+    year : int, optional
+        Year of specified statistic. If None, then it defaults to the most
+        recent (including current) season.
     """
 
     # check that the main stat isn't in the other stats
@@ -72,13 +75,10 @@ def create_yx(main_stat, other_stats, year=None):
 
     # create y and x arrays
     y = np.array(df_main["RANK THIS WEEK"])
-    x = None
+    x = []
     for df in df_others:
-        if x is None:
-            x = np.array(df["RANK THIS WEEK"])
-        else:
-            x = np.vstack((x, np.array(df["RANK THIS WEEK"])))
-    x = x.T
+        x.append(np.array(df["RANK THIS WEEK"]))
+    x = np.column_stack(tuple(x))
 
     # remove rows with NaN in x and corresponding rows in y
     if len(x.shape) == 1:
