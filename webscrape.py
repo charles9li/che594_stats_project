@@ -138,8 +138,6 @@ def get_stat_data(stat, year=None):
     cols = soup.select('thead th')
     for col in cols:
         col_name = unicodedata.normalize('NFKD', col.text).replace('\n', '').strip()
-        if col_name.startswith("AVG"):
-            col_name = col_name.replace(".", "")
         data[col_name] = []
 
     # get data from each row

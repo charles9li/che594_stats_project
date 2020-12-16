@@ -155,8 +155,6 @@ class AnalysisBase(object):
         pass
 
     def variance_inflation_factor(self):
-        # x = np.column_stack((np.ones(len(self.x)), self.x))
-        # return [variance_inflation_factor(x, i) for i in range(len(x.T))]
         return [variance_inflation_factor(self.get_X(), i) for i in range(self.df.shape[1] - 1)]
 
 
@@ -205,7 +203,7 @@ class LassoRegression(AnalysisBase):
         plt.figure()
         plt.plot(self.alpha, self.coef.T)
         plt.xscale('log')
-        plt.xlabel(r"$\alpha$")
+        plt.xlabel(r"$\lambda$")
         plt.ylabel("Standardized coefficients")
         plt.legend(labels=self.other_stats)
         plt.tight_layout()
@@ -214,7 +212,7 @@ class LassoRegression(AnalysisBase):
         plt.figure()
         plt.plot(self.alpha, self.mse)
         plt.xscale('log')
-        plt.xlabel(r"$\alpha$")
+        plt.xlabel(r"$\lambda$")
         plt.ylabel("MSE")
         plt.tight_layout()
 
@@ -272,22 +270,5 @@ def best_subset(estimator, X, y, max_size=8, cv=5):
 
 
 if __name__ == '__main__':
-    main_stat = 'official money'
-    other_stats = ['driving distance', 'driving accuracy percentage', 'greens in regulation percentage',
-                   'proximity to hole', 'scrambling', 'sg: putting']
-    lasso = RidgeRegression(main_stat, other_stats, year=2009)
-    lasso.normalize_X()
-    lasso.center_y()
-    for stat in lasso.other_stats:
-        plt.figure(stat)
-        plt.scatter(lasso.df[stat], lasso.get_y())
-    # plt.show()
-    # print(lasso.variance_inflation_factor())
-    # lasso.fit_multi(np.logspace(-1, 1.5))
-    # lasso.plot_coef()
-    # lasso.plot_mse()
-    lasso.fit_CV(np.logspace(-1, 1.5))
-    lasso.summary()
-    print(best_subset(LinearRegression(), lasso.df.iloc[:, 1:], lasso.get_y()))
-    plt.show()
+    pass
 

@@ -11,3 +11,8 @@ html
 # old files
 old
 
+# tutorial
+tutorial
+
+# png images
+*.png
