@@ -3,8 +3,11 @@
 che594_stats_project.iml
 
 # html files
-data/html
+html
 
 # .pyc files
 *.pyc
+
+# old files
+old
 
