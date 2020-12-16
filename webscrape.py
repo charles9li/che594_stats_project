@@ -25,7 +25,10 @@ _STAT_INDICES = {'driving distance':                101,
                  'sand save percentage':            111,
                  'scrambling':                      130,
                  'proximity to hole':               331,
-                 'sg: putting':                     '02564'}
+                 'sg: putting':                     '02564',
+                 'sg: off-the-tee':                 '02567',
+                 'sg: approach the green':          '02568',
+                 'sg: around-the-green':            '02569'}
 
 
 def get_stat_url(stat, year=None):
