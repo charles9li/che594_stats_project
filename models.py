@@ -217,9 +217,8 @@ class LassoRegression(AnalysisBase):
         plt.tight_layout()
 
     def fit_CV(self, alphas):
-        search = self.REGRESSION_TYPE_CV(alphas=alphas, scoring='neg_mean_squared_error', cv=self.CV)
+        search = self.REGRESSION_TYPE_CV(alphas=alphas, cv=self.CV)
         results = search.fit(self.get_X(), self.get_y())
-        self.best_mse = np.abs(results.best_score_)
         self.best_coef = results.coef_
         self.best_model = search
 
@@ -231,6 +230,13 @@ class RidgeRegression(LassoRegression):
 
     REGRESSION_TYPE = Ridge
     REGRESSION_TYPE_CV = RidgeCV
+
+    def fit_CV(self, alphas):
+        search = self.REGRESSION_TYPE_CV(alphas=alphas, scoring='neg_mean_squared_error', cv=self.CV)
+        results = search.fit(self.get_X(), self.get_y())
+        self.best_mse = np.abs(results.best_score_)
+        self.best_coef = results.coef_
+        self.best_model = search
 
 
 def best_subset(estimator, X, y, max_size=8, cv=5):
